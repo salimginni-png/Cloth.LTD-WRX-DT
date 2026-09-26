@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop All Products | Amos Clothing & Accessories</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #333; background: #fff; }
+  a { text-decoration: none; color: inherit; }
+
+  .topbar { background: #0f0f1a; color: #ddd; font-size: 13px; padding: 8px 20px; text-align: center; }
+  .topbar span { margin: 0 10px; }
+
+  header { background: #1a1a2e; color: #fff; padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+  .logo { font-size: 24px; font-weight: bold; letter-spacing: 1px; }
+  .logo span { color: #e94560; }
+  nav ul { list-style: none; display: flex; gap: 22px; flex-wrap: wrap; }
+  nav a { color: #fff; font-size: 15px; transition: color 0.3s; }
+  nav a:hover { color: #e94560; }
+
+  .page-hero { background: #1a1a2e; color: #fff; text-align: center; padding: 60px 20px; }
+  .page-hero h1 { font-size: 36px; margin-bottom: 10px; }
+  .page-hero p { color: #ccc; font-size: 15px; }
+
+  /* FILTER BAR */
+  .filters { max-width: 1200px; margin: 0 auto; padding: 30px 20px 10px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+  .filter-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
+  .filter-buttons button { background: #fff; border: 1px solid #ddd; padding: 9px 20px; border-radius: 25px; cursor: pointer; font-size: 14px; transition: all 0.3s; }
+  .filter-buttons button:hover, .filter-buttons button.active { background: #e94560; color: #fff; border-color: #e94560; }
+  .sort-select { padding: 9px 16px; border: 1px solid #ddd; border-radius: 25px; font-size: 14px; background: #fff; cursor: pointer; }
+
+  /* PRODUCTS */
+  .products { max-width: 1200px; margin: 0 auto; padding: 20px 20px 60px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 25px; }
+  .card { background: #fff; border: 1px solid #eee; border-radius: 10px; overflow: hidden; text-align: center; transition: box-shadow 0.3s, transform 0.3s; }
+  .card:hover { box-shadow: 0 8px 22px rgba(0,0,0,0.12); transform: translateY(-4px); }
+  .card img { width: 100%; height: 230px; object-fit: cover; }
+  .card-body { padding: 16px; }
+  .card h3 { font-size: 17px; margin-bottom: 6px; color: #1a1a2e; }
+  .card .price { color: #e94560; font-weight: bold; font-size: 16px; margin-bottom: 10px; }
+  .card .tag { display: inline-block; background: #f0f0f0; color: #555; font-size: 12px; padding: 3px 10px; border-radius: 12px; margin-bottom: 8px; }
+  .card button { background: #1a1a2e; color: #fff; border: none; padding: 9px 20px; border-radius: 20px; cursor: pointer; font-size: 14px; transition: background 0.3s; }
+  .card button:hover { background: #e94560; }
+
+  /* PAGINATION */
+  .pagination { text-align: center; padding: 20px 0 50px; }
+  .pagination a { display: inline-block; padding: 10px 16px; margin: 0 4px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; transition: all 0.3s; }
+  .pagination a:hover, .pagination a.active { background: #e94560; color: #fff; border-color: #e94560; }
+
+  footer { background: #1a1a2e; color: #ccc; padding: 40px 20px 20px; margin-top: 40px; }
+  .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 1100px; margin: 0 auto 25px; }
+  .footer-grid h3 { color: #fff; margin-bottom: 12px; font-size: 17px; }
+  .footer-grid p, .footer-grid a { color: #aaa; font-size: 14px; display: block; margin-bottom: 6px; }
+  .footer-grid a:hover { color: #e94560; }
+  .footer-bottom { text-align: center; border-top: 1px solid #333; padding-top: 18px; font-size: 13px; color: #888; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span>🚚 Fast Delivery to Kenya & Ghana</span>
+  <span>📱 Pay with Mobile Money or Card</span>
+</div>
+
+<header>
+  <div class="logo">Amos<span>Clothing</span></div>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <h1>Shop All Products</h1>
+  <p>Browse our full collection of clothing and accessories</p>
+</section>
+
+<!-- FILTERS -->
+<div class="filters">
+  <div class="filter-buttons">
+    <button class="active">All</button>
+    <button>Men</button>
+    <button>Women</button>
+    <button>Accessories</button>
+    <button>Footwear</button>
+  </div>
+  <select class="sort-select">
+    <option>Sort: Featured</option>
+    <option>Price: Low to High</option>
+    <option>Price: High to Low</option>
+    <option>Newest First</option>
+  </select>
+</div>
+
+<!-- PRODUCT GRID -->
+<section class="products">
+  <div class="grid">
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500" alt="Classic T-Shirt">
+      <div class="card-body">
+        <span class="tag">Men</span>
+        <h3>Classic Cotton T-Shirt</h3>
+        <p class="price">KES 1,200</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=500" alt="Denim Jeans">
+      <div class="card-body">
+        <span class="tag">Men</span>
+        <h3>Slim Fit Denim Jeans</h3>
+        <p class="price">KES 2,500</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=500" alt="Bomber Jacket">
+      <div class="card-body">
+        <span class="tag">Unisex</span>
+        <h3>Casual Bomber Jacket</h3>
+        <p class="price">KES 3,800</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=500" alt="Summer Dress">
+      <div class="card-body">
+        <span class="tag">Women</span>
+        <h3>Elegant Summer Dress</h3>
+        <p class="price">KES 2,900</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=500" alt="Hoodie">
+      <div class="card-body">
+        <span class="tag">Unisex</span>
+        <h3>Warm Fleece Hoodie</h3>
+        <p class="price">KES 2,200</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=500" alt="Watch">
+      <div class="card-body">
+        <span class="tag">Accessories</span>
+        <h3>Classic Leather Watch</h3>
+        <p class="price">KES 1,800</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=500" alt="Shorts">
+      <div class="card-body">
+        <span class="tag">Men</span>
+        <h3>Casual Summer Shorts</h3>
+        <p class="price">KES 1,500</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=500" alt="Sweater">
+      <div class="card-body">
+        <span class="tag">Women</span>
+        <h3>Knit Pullover Sweater</h3>
+        <p class="price">KES 2,700</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500" alt="Office Shirt">
+      <div class="card-body">
+        <span class="tag">Men</span>
+        <h3>Formal Office Shirt</h3>
+        <p class="price">KES 1,900</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=500" alt="Sneakers">
+      <div class="card-body">
+        <span class="tag">Footwear</span>
+        <h3>White Casual Sneakers</h3>
+        <p class="price">KES 3,200</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=500" alt="Handbag">
+      <div class="card-body">
+        <span class="tag">Accessories</span>
+        <h3>Leather Handbag</h3>
+        <p class="price">KES 2,800</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=500" alt="Midi Skirt">
+      <div class="card-body">
+        <span class="tag">Women</span>
+        <h3>Floral Midi Skirt</h3>
+        <p class="price">KES 2,100</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?w=500" alt="Polo Shirt">
+      <div class="card-body">
+        <span class="tag">Men</span>
+        <h3>Premium Polo Shirt</h3>
+        <p class="price">KES 1,700</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=500" alt="Leggings">
+      <div class="card-body">
+        <span class="tag">Women</span>
+        <h3>Stretch Yoga Leggings</h3>
+        <p class="price">KES 1,600</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500" alt="Backpack">
+      <div class="card-body">
+        <span class="tag">Accessories</span>
+        <h3>Urban Travel Backpack</h3>
+        <p class="price">KES 2,400</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1608256246200-53e635b5b65f?w=500" alt="Sandals">
+      <div class="card-body">
+        <span class="tag">Footwear</span>
+        <h3>Comfort Leather Sandals</h3>
+        <p class="price">KES 1,900</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=500" alt="Cap">
+      <div class="card-body">
+        <span class="tag">Accessories</span>
+        <h3>Snapback Baseball Cap</h3>
+        <p class="price">KES 800</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=500" alt="Blouse">
+      <div class="card-body">
+        <span class="tag">Women</span>
+        <h3>Chiffon Office Blouse</h3>
+        <p class="price">KES 2,000</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PAGINATION -->
+  <div class="pagination">
+    <a href="#" class="active">1</a>
+    <a href="#">2</a>
+    <a href="#">3</a>
+    <a href="#">Next →</a>
+  </div>
+
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h3>Amos Clothing</h3>
+      <p>Quality fashion delivered across Kenya and Ghana.</p>
+    </div>
+    <div>
+      <h3>Quick Links</h3>
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div>
+      <h3>Legal</h3>
+      <a href="terms.html">Terms & Conditions</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="returns.html">Return Policy</a>
+    </div>
+    <div>
+      <h3>Contact</h3>
+      <p>kipkiruiamos001@gmail.com</p>
+      <p>+254 XXX XXX XXX</p>
+      <p>Bomet, Kenya</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Amos Clothing & Accessories. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>
