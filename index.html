@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amos Clothing & Accessories | Quality Fashion for Kenya & Ghana</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #333; background: #fff; }
+  a { text-decoration: none; color: inherit; }
+
+  /* HEADER */
+  .topbar { background: #0f0f1a; color: #ddd; font-size: 13px; padding: 8px 20px; text-align: center; }
+  .topbar span { margin: 0 10px; }
+  header { background: #1a1a2e; color: #fff; padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+  .logo { font-size: 24px; font-weight: bold; letter-spacing: 1px; }
+  .logo span { color: #e94560; }
+  nav ul { list-style: none; display: flex; gap: 22px; flex-wrap: wrap; }
+  nav a { color: #fff; font-size: 15px; transition: color 0.3s; }
+  nav a:hover { color: #e94560; }
+
+  /* HERO */
+  .hero { background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600') center/cover no-repeat; color: #fff; text-align: center; padding: 110px 20px; }
+  .hero h1 { font-size: 44px; margin-bottom: 15px; letter-spacing: 1px; }
+  .hero p { font-size: 18px; max-width: 650px; margin: 0 auto 25px; color: #eee; }
+  .btn { display: inline-block; background: #e94560; color: #fff; padding: 14px 34px; border-radius: 30px; font-weight: bold; font-size: 16px; transition: background 0.3s; }
+  .btn:hover { background: #c73650; }
+
+  /* SECTION TITLES */
+  .section-title { text-align: center; font-size: 30px; margin-bottom: 10px; color: #1a1a2e; }
+  .section-sub { text-align: center; color: #777; margin-bottom: 40px; font-size: 15px; }
+
+  /* CATEGORIES */
+  .categories { padding: 60px 20px; background: #f9f9f9; }
+  .cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; max-width: 1100px; margin: 0 auto; }
+  .cat-card { background: #fff; border-radius: 10px; overflow: hidden; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.07); transition: transform 0.3s; }
+  .cat-card:hover { transform: translateY(-5px); }
+  .cat-card img { width: 100%; height: 160px; object-fit: cover; }
+  .cat-card h3 { padding: 14px; font-size: 17px; color: #1a1a2e; }
+
+  /* PRODUCTS */
+  .products { padding: 60px 20px; max-width: 1200px; margin: 0 auto; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 25px; }
+  .card { background: #fff; border: 1px solid #eee; border-radius: 10px; overflow: hidden; text-align: center; transition: box-shadow 0.3s, transform 0.3s; }
+  .card:hover { box-shadow: 0 8px 22px rgba(0,0,0,0.12); transform: translateY(-4px); }
+  .card img { width: 100%; height: 230px; object-fit: cover; }
+  .card-body { padding: 16px; }
+  .card h3 { font-size: 17px; margin-bottom: 6px; color: #1a1a2e; }
+  .card .price { color: #e94560; font-weight: bold; font-size: 16px; margin-bottom: 10px; }
+  .card .tag { display: inline-block; background: #f0f0f0; color: #555; font-size: 12px; padding: 3px 10px; border-radius: 12px; margin-bottom: 8px; }
+  .card button { background: #1a1a2e; color: #fff; border: none; padding: 9px 20px; border-radius: 20px; cursor: pointer; font-size: 14px; transition: background 0.3s; }
+  .card button:hover { background: #e94560; }
+
+  /* PROMO BANNER */
+  .promo { background: #e94560; color: #fff; text-align: center; padding: 50px 20px; }
+  .promo h2 { font-size: 28px; margin-bottom: 10px; }
+  .promo p { font-size: 16px; margin-bottom: 20px; }
+  .promo .btn { background: #fff; color: #e94560; }
+  .promo .btn:hover { background: #f0f0f0; }
+
+  /* ABOUT */
+  .about { padding: 60px 20px; max-width: 850px; margin: 0 auto; text-align: center; }
+  .about p { color: #555; font-size: 16px; }
+
+  /* TESTIMONIALS */
+  .testimonials { background: #f9f9f9; padding: 60px 20px; }
+  .test-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; max-width: 1000px; margin: 0 auto; }
+  .test-card { background: #fff; padding: 25px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
+  .test-card p { font-style: italic; color: #555; margin-bottom: 12px; }
+  .test-card h4 { color: #1a1a2e; font-size: 15px; }
+  .stars { color: #f5a623; margin-bottom: 10px; }
+
+  /* CONTACT */
+  .contact { padding: 60px 20px; max-width: 700px; margin: 0 auto; text-align: center; }
+  .contact p { margin: 8px 0; font-size: 16px; color: #555; }
+
+  /* POLICIES */
+  .policies { padding: 50px 20px; max-width: 800px; margin: 0 auto; background: #f9f9f9; border-radius: 10px; }
+  .policies h2 { text-align: center; margin-bottom: 25px; color: #1a1a2e; }
+  .policies h3 { margin-top: 22px; font-size: 17px; color: #1a1a2e; }
+  .policies p { color: #555; font-size: 15px; }
+
+  /* FOOTER */
+  footer { background: #1a1a2e; color: #ccc; padding: 40px 20px 20px; margin-top: 40px; }
+  .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 1100px; margin: 0 auto 25px; }
+  .footer-grid h3 { color: #fff; margin-bottom: 12px; font-size: 17px; }
+  .footer-grid p, .footer-grid a { color: #aaa; font-size: 14px; display: block; margin-bottom: 6px; }
+  .footer-grid a:hover { color: #e94560; }
+  .footer-bottom { text-align: center; border-top: 1px solid #333; padding-top: 18px; font-size: 13px; color: #888; }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <span>🚚 Fast Delivery to Kenya & Ghana</span>
+  <span>📱 Pay with Mobile Money or Card</span>
+  <span>📞 +254 XXX XXX XXX</span>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">Amos<span>Clothing</span></div>
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#categories">Categories</a></li>
+      <li><a href="#products">Shop</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <h1>Style That Travels</h1>
+  <p>Quality clothing and accessories delivered to your doorstep in Kenya and Ghana. Pay easily with Mobile Money or card.</p>
+  <a href="#products" class="btn">Shop Now</a>
+</section>
+
+<!-- CATEGORIES -->
+<section class="categories" id="categories">
+  <h2 class="section-title">Shop by Category</h2>
+  <p class="section-sub">Find your perfect style from our curated collections</p>
+  <div class="cat-grid">
+    <div class="cat-card">
+      <img src="https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=400" alt="Men's Wear">
+      <h3>Men's Wear</h3>
+    </div>
+    <div class="cat-card">
+      <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=400" alt="Women's Wear">
+      <h3>Women's Wear</h3>
+    </div>
+    <div class="cat-card">
+      <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=400" alt="T-Shirts">
+      <h3>T-Shirts & Tops</h3>
+    </div>
+    <div class="cat-card">
+      <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=400" alt="Jeans">
+      <h3>Jeans & Pants</h3>
+    </div>
+    <div class="cat-card">
+      <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400" alt="Jackets">
+      <h3>Jackets & Coats</h3>
+    </div>
+    <div class="cat-card">
+      <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=400" alt="Accessories">
+      <h3>Accessories</h3>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <h2 class="section-title">Featured Products</h2>
+  <p class="section-sub">Handpicked styles for every occasion</p>
+  <div class="grid">
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500" alt="Classic T-Shirt">
+      <div class="card-body">
+        <span class="tag">Men</span>
+        <h3>Classic Cotton T-Shirt</h3>
+        <p class="price">KES 1,200</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=500" alt="Denim Jeans">
+      <div class="card-body">
+        <span class="tag">Men</span>
+        <h3>Slim Fit Denim Jeans</h3>
+        <p class="price">KES 2,500</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=500" alt="Casual Jacket">
+      <div class="card-body">
+        <span class="tag">Unisex</span>
+        <h3>Casual Bomber Jacket</h3>
+        <p class="price">KES 3,800</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=500" alt="Women's Dress">
+      <div class="card-body">
+        <span class="tag">Women</span>
+        <h3>Elegant Summer Dress</h3>
+        <p class="price">KES 2,900</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=500" alt="Hoodie">
+      <div class="card-body">
+        <span class="tag">Unisex</span>
+        <h3>Warm Fleece Hoodie</h3>
+        <p class="price">KES 2,200</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=500" alt="Watch">
+      <div class="card-body">
+        <span class="tag">Accessories</span>
+        <h3>Classic Leather Watch</h3>
+        <p class="price">KES 1,800</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=500" alt="Shorts">
+      <div class="card-body">
+        <span class="tag">Men</span>
+        <h3>Casual Summer Shorts</h3>
+        <p class="price">KES 1,500</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=500" alt="Sweater">
+      <div class="card-body">
+        <span class="tag">Women</span>
+        <h3>Knit Pullover Sweater</h3>
+        <p class="price">KES 2,700</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500" alt="Shirt">
+      <div class="card-body">
+        <span class="tag">Men</span>
+        <h3>Formal Office Shirt</h3>
+        <p class="price">KES 1,900</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=500" alt="Sneakers">
+      <div class="card-body">
+        <span class="tag">Footwear</span>
+        <h3>White Casual Sneakers</h3>
+        <p class="price">KES 3,200</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=500" alt="Handbag">
+      <div class="card-body">
+        <span class="tag">Accessories</span>
+        <h3>Leather Handbag</h3>
+        <p class="price">KES 2,800</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=500" alt="Skirt">
+      <div class="card-body">
+        <span class="tag">Women</span>
+        <h3>Floral Midi Skirt</h3>
+        <p class="price">KES 2,100</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROMO -->
+<section class="promo">
+  <h2>Free Delivery on Orders Over KES 5,000</h2>
+  <p>Shop now and enjoy free shipping to your doorstep in Kenya & Ghana</p>
+  <a href="#products" class="btn">Start Shopping</a>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <h2 class="section-title">About Us</h2>
+  <p>Amos Clothing & Accessories is an online fashion store based in Bomet, Kenya. We sell quality clothing and accessories to customers in Kenya and Ghana. Our goal is to make stylish, affordable fashion accessible across Africa with fast delivery and secure Mobile Money payments.</p>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <h2 class="section-title">What Our Customers Say</h2>
+  <p class="section-sub">Trusted by shoppers in Kenya and Ghana</p>
+  <div class="test-grid">
+    <div class="test-card">
+      <div class="stars">★★★★★</div>
+      <p>"Great quality clothes and fast delivery to Accra. The mobile money payment was so easy!"</p>
+      <h4>— Akosua M., Ghana</h4>
+    </div>
+    <div class="test-card">
+      <div class="stars">★★★★★</div>
+      <p>"I ordered a jacket and it arrived in perfect condition. Will definitely shop again."</p>
+      <h4>— Brian K., Kenya</h4>
+    </div>
+    <div class="test-card">
+      <div class="stars">★★★★☆</div>
+      <p>"Affordable prices and stylish designs. My go-to store for casual wear."</p>
+      <h4>— Fatima A., Ghana</h4>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <h2 class="section-title">Contact Us</h2>
+  <p><strong>Email:</strong> kipkiruiamos001@gmail.com</p>
+  <p><strong>Phone:</strong> +254 XXX XXX XXX</p>
+  <p><strong>Location:</strong> Bomet, Kenya</p>
+  <p><strong>Hours:</strong> Mon – Sat, 8:00 AM – 6:00 PM</p>
+</section>
+
+<!-- POLICIES -->
+<section class="policies">
+  <h2>Our Policies</h2>
+  <h3>Return & Refund Policy</h3>
+  <p>Customers may return items within 7 days of delivery if the product is damaged or incorrect. Refunds will be processed to the original payment method within 5–10 business days.</p>
+  <h3>Shipping Policy</h3>
+  <p>We ship to all regions in Kenya and Ghana. Delivery takes 2–5 business days within Kenya and 5–10 business days to Ghana. Shipping fees are calculated at checkout.</p>
+  <h3>Privacy Policy</h3>
+  <p>We collect customer information (name, phone, address) only to process orders and deliver products. We do not share personal data with third parties except for delivery purposes.</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h3>Amos Clothing</h3>
+      <p>Quality fashion delivered across Kenya and Ghana.</p>
+    </div>
+    <div>
+      <h3>Quick Links</h3>
+      <a href="#home">Home</a>
+      <a href="#products">Shop</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div>
+      <h3>Categories</h3>
+      <a href="#categories">Men's Wear</a>
+      <a href="#categories">Women's Wear</a>
+      <a href="#categories">Accessories</a>
+      <a href="#categories">Footwear</a>
+    </div>
+    <div>
+      <h3>Contact</h3>
+      <p>kipkiruiamos001@gmail.com</p>
+      <p>+254 XXX XXX XXX</p>
+      <p>Bomet, Kenya</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Amos Clothing & Accessories. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>
