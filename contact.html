@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us | Amos Clothing & Accessories</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.7; color: #333; background: #fff; }
+  a { text-decoration: none; color: inherit; }
+
+  .topbar { background: #0f0f1a; color: #ddd; font-size: 13px; padding: 8px 20px; text-align: center; }
+  .topbar span { margin: 0 10px; }
+
+  header { background: #1a1a2e; color: #fff; padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+  .logo { font-size: 24px; font-weight: bold; letter-spacing: 1px; }
+  .logo span { color: #e94560; }
+  nav ul { list-style: none; display: flex; gap: 22px; flex-wrap: wrap; }
+  nav a { color: #fff; font-size: 15px; transition: color 0.3s; }
+  nav a:hover { color: #e94560; }
+
+  .page-hero { background: #1a1a2e; color: #fff; text-align: center; padding: 60px 20px; }
+  .page-hero h1 { font-size: 36px; margin-bottom: 10px; }
+  .page-hero p { color: #ccc; font-size: 15px; }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 50px 20px; }
+
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 40px; }
+  @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } }
+
+  /* INFO CARDS */
+  .info-card { background: #f9f9f9; border-radius: 12px; padding: 25px; margin-bottom: 20px; display: flex; gap: 18px; align-items: flex-start; }
+  .info-card .icon { font-size: 26px; background: #e94560; color: #fff; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .info-card h3 { color: #1a1a2e; font-size: 17px; margin-bottom: 6px; }
+  .info-card p { color: #666; font-size: 15px; margin: 0; }
+  .info-card a { color: #e94560; }
+
+  /* FORM */
+  .form-box { background: #f9f9f9; border-radius: 12px; padding: 30px; }
+  .form-box h3 { color: #1a1a2e; margin-bottom: 20px; font-size: 22px; }
+  .form-group { margin-bottom: 18px; }
+  .form-group label { display: block; font-size: 14px; font-weight: bold; color: #1a1a2e; margin-bottom: 6px; }
+  .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 15px; font-family: inherit; }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #e94560; }
+  .submit-btn { background: #e94560; color: #fff; border: none; padding: 14px 34px; border-radius: 30px; font-size: 16px; font-weight: bold; cursor: pointer; transition: background 0.3s; }
+  .submit-btn:hover { background: #c73650; }
+
+  /* MAP / LOCATION */
+  .map-box { margin-top: 50px; background: #1a1a2e; color: #fff; border-radius: 12px; padding: 40px; text-align: center; }
+  .map-box h3 { font-size: 22px; margin-bottom: 10px; }
+  .map-box p { color: #ccc; font-size: 15px; margin-bottom: 20px; }
+  .map-box .btn { display: inline-block; background: #e94560; color: #fff; padding: 12px 30px; border-radius: 30px; font-weight: bold; }
+
+  footer { background: #1a1a2e; color: #ccc; padding: 40px 20px 20px; margin-top: 50px; }
+  .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 1100px; margin: 0 auto 25px; }
+  .footer-grid h3 { color: #fff; margin-bottom: 12px; font-size: 17px; }
+  .footer-grid p, .footer-grid a { color: #aaa; font-size: 14px; display: block; margin-bottom: 6px; }
+  .footer-grid a:hover { color: #e94560; }
+  .footer-bottom { text-align: center; border-top: 1px solid #333; padding-top: 18px; font-size: 13px; color: #888; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span>🚚 Fast Delivery to Kenya & Ghana</span>
+  <span>📱 Pay with Mobile Money or Card</span>
+</div>
+
+<header>
+  <div class="logo">Amos<span>Clothing</span></div>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#categories">Categories</a></li>
+      <li><a href="index.html#products">Shop</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <h1>Contact Us</h1>
+  <p>We'd love to hear from you. Reach out for orders, questions, or support.</p>
+</section>
+
+<div class="container">
+
+  <div class="contact-grid">
+
+    <!-- LEFT: CONTACT INFO -->
+    <div>
+      <div class="info-card">
+        <div class="icon">📧</div>
+        <div>
+          <h3>Email</h3>
+          <p><a href="mailto:kipkiruiamos001@gmail.com">kipkiruiamos001@gmail.com</a></p>
+          <p>We reply within 24 hours</p>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="icon">📞</div>
+        <div>
+          <h3>Phone / WhatsApp</h3>
+          <p>+254 XXX XXX XXX</p>
+          <p>Mon – Sat, 8:00 AM – 6:00 PM</p>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="icon">📍</div>
+        <div>
+          <h3>Location</h3>
+          <p>Bomet Plaza, 2nd Floor</p>
+          <p>Bomet Town, Kenya</p>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="icon">🌍</div>
+        <div>
+          <h3>We Ship To</h3>
+          <p>All regions in Kenya & Ghana</p>
+          <p>Delivery: 2–5 days (Kenya), 5–10 days (Ghana)</p>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="icon">💳</div>
+        <div>
+          <h3>Payment Methods</h3>
+          <p>Mobile Money (MTN, AirtelTigo, Telecel, M-Pesa)</p>
+          <p>Debit & Credit Cards</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: CONTACT FORM -->
+    <div class="form-box">
+      <h3>Send Us a Message</h3>
+      <form action="mailto:kipkiruiamos001@gmail.com" method="post" enctype="text/plain">
+        <div class="form-group">
+          <label for="name">Full Name *</label>
+          <input type="text" id="name" name="name" required placeholder="Your full name">
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address *</label>
+          <input type="email" id="email" name="email" required placeholder="you@example.com">
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="+254 or +233">
+        </div>
+        <div class="form-group">
+          <label for="subject">Subject *</label>
+          <select id="subject" name="subject" required>
+            <option value="">Select a subject</option>
+            <option value="order">Order Inquiry</option>
+            <option value="product">Product Question</option>
+            <option value="shipping">Shipping & Delivery</option>
+            <option value="return">Return or Refund</option>
+            <option value="wholesale">Wholesale / Bulk Order</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Message *</label>
+          <textarea id="message" name="message" required placeholder="How can we help you?"></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Send Message</button>
+      </form>
+    </div>
+
+  </div>
+
+  <!-- LOCATION BANNER -->
+  <div class="map-box">
+    <h3>Visit Our Store</h3>
+    <p>Bomet Plaza, 2nd Floor, Bomet Town, Kenya</p>
+    <a href="https://maps.google.com/?q=Bomet+Town+Kenya" target="_blank" class="btn">Open in Google Maps</a>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h3>Amos Clothing</h3>
+      <p>Quality fashion delivered across Kenya and Ghana.</p>
+    </div>
+    <div>
+      <h3>Quick Links</h3>
+      <a href="index.html">Home</a>
+      <a href="index.html#products">Shop</a>
+      <a href="index.html#about">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div>
+      <h3>Legal</h3>
+      <a href="terms.html">Terms & Conditions</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="returns.html">Return Policy</a>
+    </div>
+    <div>
+      <h3>Contact</h3>
+      <p>kipkiruiamos001@gmail.com</p>
+      <p>+254 XXX XXX XXX</p>
+      <p>Bomet, Kenya</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Amos Clothing & Accessories. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>
