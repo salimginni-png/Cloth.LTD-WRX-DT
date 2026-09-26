@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout | Cloth.LTD-WRX-DT</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #333; background: #f4f4f4; }
+  a { text-decoration: none; color: inherit; }
+
+  header { background: #1a1a2e; color: #fff; padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; position: sticky; top: 0; z-index: 100; }
+  .logo { font-size: 24px; font-weight: bold; letter-spacing: 1px; }
+  .logo span { color: #e94560; }
+  header a { color: #fff; font-size: 15px; transition: color 0.3s; }
+  header a:hover { color: #e94560; }
+
+  .container { max-width: 1050px; margin: 0 auto; padding: 40px 20px; }
+  h1 { font-size: 30px; color: #1a1a2e; margin-bottom: 10px; text-align: center; }
+  .subtitle { text-align: center; color: #777; font-size: 15px; margin-bottom: 30px; }
+
+  .checkout-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 30px; align-items: start; }
+  @media (max-width: 768px) { .checkout-grid { grid-template-columns: 1fr; } }
+
+  .box { background: #fff; border-radius: 12px; padding: 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .box h2 { font-size: 20px; color: #1a1a2e; margin-bottom: 20px; border-left: 4px solid #e94560; padding-left: 12px; }
+
+  .form-group { margin-bottom: 16px; }
+  .form-group label { display: block; font-size: 14px; font-weight: bold; color: #1a1a2e; margin-bottom: 6px; }
+  .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 15px; font-family: inherit; background: #fff; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #e94560; box-shadow: 0 0 0 3px rgba(233,69,96,0.1); }
+  .form-group input:disabled, .form-group select:disabled { background: #f4f4f4; color: #999; cursor: not-allowed; }
+  .form-group textarea { resize: vertical; min-height: 80px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+  @media (max-width: 500px) { .form-row { grid-template-columns: 1fr; } }
+  .hint { font-size: 12px; color: #999; margin-top: 4px; }
+
+  /* CART ITEMS */
+  .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid #eee; gap: 10px; }
+  .cart-item:last-child { border-bottom: none; }
+  .cart-item .info { flex: 1; }
+  .cart-item .info h4 { font-size: 15px; color: #1a1a2e; margin-bottom: 3px; }
+  .cart-item .info p { font-size: 13px; color: #888; }
+  .cart-item .right { display: flex; align-items: center; gap: 10px; }
+  .cart-item .price { font-weight: bold; color: #e94560; font-size: 15px; white-space: nowrap; }
+  .cart-item .remove { background: none; border: none; color: #c00; font-size: 18px; cursor: pointer; padding: 4px 8px; border-radius: 4px; transition: background 0.2s; }
+  .cart-item .remove:hover { background: #ffeeee; }
+
+  .empty-cart { text-align: center; padding: 40px 10px; color: #888; }
+  .empty-cart a { color: #e94560; font-weight: bold; display: inline-block; margin-top: 10px; }
+
+  /* TOTALS */
+  .totals { margin-top: 18px; border-top: 2px solid #eee; padding-top: 15px; }
+  .total-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 15px; color: #555; }
+  .total-row.grand { font-size: 19px; font-weight: bold; color: #1a1a2e; margin-top: 10px; border-top: 1px solid #eee; padding-top: 12px; }
+  .total-row .free { color: #28a745; font-weight: bold; }
+
+  .pay-btn { width: 100%; background: #e94560; color: #fff; border: none; padding: 16px; border-radius: 30px; font-size: 17px; font-weight: bold; cursor: pointer; margin-top: 22px; transition: background 0.3s, transform 0.2s; }
+  .pay-btn:hover:not(:disabled) { background: #c73650; transform: translateY(-2px); }
+  .pay-btn:disabled { background: #ccc; cursor: not-allowed; }
+  .secure { text-align: center; font-size: 13px; color: #888; margin-top: 12px; }
+
+  .trust-badges { display: flex; justify-content: center; gap: 20px; margin-top: 18px; flex-wrap: wrap; }
+  .trust-badges span { font-size: 12px; color: #888; }
+
+  footer { background: #1a1a2e; color: #ccc; padding: 30px 20px; margin-top: 50px; text-align: center; font-size: 13px; }
+  footer a { color: #e94560; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Cloth<span>.LTD-WRX-DT</span></div>
+  <a href="index.html">← Continue Shopping</a>
+</header>
+
+<div class="container">
+  <h1>Secure Checkout</h1>
+  <p class="subtitle">Complete your order in just a few steps</p>
+
+  <div class="checkout-grid">
+
+    <!-- LEFT: CUSTOMER DETAILS -->
+    <div class="box">
+      <h2>Delivery Details</h2>
+      <form id="checkoutForm" novalidate>
+
+        <div class="form-group">
+          <label for="name">Full Name *</label>
+          <input type="text" id="name" required placeholder="Your full name">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" required placeholder="you@example.com">
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number *</label>
+            <input type="tel" id="phone" required placeholder="+254 or +233">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="country">Country *</label>
+          <select id="country" required onchange="updateRegions()">
+            <option value="">Select country</option>
+            <option value="Kenya">Kenya</option>
+            <option value="Ghana">Ghana</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="region">Region / State *</label>
+          <select id="region" required>
+            <option value="">Select country first</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="city">City / Town *</label>
+            <input type="text" id="city" required placeholder="e.g., Nairobi, Accra, Bomet">
+          </div>
+          <div class="form-group">
+            <label for="area">Area / Neighbourhood *</label>
+            <input type="text" id="area" required placeholder="e.g., Kilimani, East Legon">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="address">Street / Building / House Number *</label>
+          <input type="text" id="address" required placeholder="e.g., Bomet Plaza, 2nd Floor, House 12">
+        </div>
+
+        <div class="form-group">
+          <label for="landmark">Nearest Landmark (optional)</label>
+          <input type="text" id="landmark" placeholder="e.g., Opposite Bomet Post Office">
+          <p class="hint">Helps our delivery rider find you faster.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="delivery">Delivery Method *</label>
+          <select id="delivery" required onchange="updateTotals()">
+            <option value="">Select delivery method</option>
+            <option value="standard" data-fee="0">Standard Delivery (3–5 days) — Free</option>
+            <option value="express" data-fee="500">Express Delivery (1–2 days) — KES 500</option>
+            <option value="pickup" data-fee="0">Pickup Station — Free</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="payment">Payment Method *</label>
+          <select id="payment" required>
+            <option value="">Select payment method</option>
+            <option value="mpesa">M-Pesa (Kenya)</option>
+            <option value="mtn">MTN Mobile Money (Ghana)</option>
+            <option value="airteltigo">AirtelTigo Money (Ghana)</option>
+            <option value="telecel">Telecel Cash (Ghana)</option>
+            <option value="card">Debit / Credit Card</option>
+            <option value="cash">Cash on Delivery</option>
+          </select>
+        </div>
+
+      </form>
+    </div>
+
+    <!-- RIGHT: ORDER SUMMARY -->
+    <div class="box">
+      <h2>Order Summary</h2>
+
+      <div id="cartItems">
+        <div class="empty-cart">
+          Your cart is empty.
+          <br>
+          <a href="index.html">Go shopping →</a>
+        </div>
+      </div>
+
+      <div class="totals" id="totals" style="display:none;">
+        <div class="total-row">
+          <span>Subtotal</span>
+          <span id="subtotal">KES 0</span>
+        </div>
+        <div class="total-row">
+          <span>Delivery Fee</span>
+          <span id="deliveryFee">KES 0</span>
+        </div>
+        <div class="total-row grand">
+          <span>Total</span>
+          <span id="grandTotal">KES 0</span>
+        </div>
+      </div>
+
+      <button class="pay-btn" id="payBtn" disabled>Proceed to Payment</button>
+      <p class="secure">🔒 Secure payment powered by Kora</p>
+
+      <div class="trust-badges">
+        <span>✅ SSL Secured</span>
+        <span>✅ 7-Day Returns</span>
+        <span>✅ Fast Delivery</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 Cloth.LTD-WRX-DT. All rights reserved. | <a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a> · <a href="returns.html">Returns</a></p>
+</footer>
+
+<script>
+  // ============ CART ============
+  var cart = JSON.parse(localStorage.getItem('cart') || '[]');
+  var cartItems = document.getElementById('cartItems');
+  var totals = document.getElementById('totals');
+  var payBtn = document.getElementById('payBtn');
+
+  function renderCart() {
+    if (cart.length === 0) {
+      cartItems.innerHTML = '<div class="empty-cart">Your cart is empty.<br><a href="index.html">Go shopping →</a></div>';
+      totals.style.display = 'none';
+      payBtn.disabled = true;
+      return;
+    }
+
+    var html = '';
+    var subtotal = 0;
+
+    cart.forEach(function(item, index) {
+      subtotal += item.price * item.qty;
+      html += '<div class="cart-item">' +
+        '<div class="info">' +
+          '<h4>' + item.name + '</h4>' +
+          '<p>Qty: ' + item.qty + ' × KES ' + item.price.toLocaleString() + '</p>' +
+        '</div>' +
+        '<div class="right">' +
+          '<span class="price">KES ' + (item.price * item.qty).toLocaleString() + '</span>' +
+          '<button class="remove" onclick="removeItem(' + index + ')" title="Remove">✕</button>' +
+        '</div>' +
+      '</div>';
+    });
+
+    cartItems.innerHTML = html;
+    totals.style.display = 'block';
+    payBtn.disabled = false;
+    updateTotals();
+  }
+
+  function removeItem(index) {
+    cart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    renderCart();
+  }
+
+  // ============ TOTALS ============
+  function getSubtotal() {
+    return cart.reduce(function(sum, item) { return sum + (item.price * item.qty); }, 0);
+  }
+
+  function updateTotals() {
+    var subtotal = getSubtotal();
+    var deliverySelect = document.getElementById('delivery');
+    var deliveryFee = 0;
+
+    if (deliverySelect.value) {
+      var selected = deliverySelect.options[deliverySelect.selectedIndex];
+      deliveryFee = parseInt(selected.getAttribute('data-fee')) || 0;
+    }
+
+    var grand = subtotal + deliveryFee;
+
+    document.getElementById('subtotal').textContent = 'KES ' + subtotal.toLocaleString();
+    document.getElementById('deliveryFee').innerHTML = deliveryFee === 0
+      ? '<span class="free">Free</span>'
+      : 'KES ' + deliveryFee.toLocaleString();
+    document.getElementById('grandTotal').textContent = 'KES ' + grand.toLocaleString();
+  }
+
+  renderCart();
+
+  // ============ REGIONS ============
+  var regions = {
+    Kenya: ['Bomet', 'Nairobi', 'Mombasa', 'Kisumu', 'Nakuru', 'Uasin Gishu (Eldoret)', 'Kericho', 'Narok', 'Kajiado', 'Machakos', 'Kiambu', 'Nyeri', 'Kakamega', 'Meru'],
+    Ghana: ['Greater Accra', 'Ashanti', 'Western', 'Western North', 'Eastern', 'Central', 'Northern', 'Volta', 'Oti', 'Upper East', 'Upper West', 'Bono', 'Bono East', 'Ahafo', 'Savannah', 'North East']
+  };
+
+  function updateRegions() {
+    var country = document.getElementById('country').value;
+    var regionSelect = document.getElementById('region');
+    regionSelect.innerHTML = '<option value="">Select region</option>';
+
+    if (regions[country]) {
+      regions[country].forEach(function(r) {
+        var opt = document.createElement('option');
+        opt.value = r;
+        opt.textContent = r;
+        regionSelect.appendChild(opt);
+      });
+    } else {
+      regionSelect.innerHTML = '<option value="">Select country first</option>';
+    }
+  }
+
+  // ============ PAY BUTTON ============
+  payBtn.addEventListener('click', function() {
+    var form = document.getElementById('checkoutForm');
+
+    // Check HTML5 validation
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    var name = document.getElementById('name').value.trim();
+    var email = document.getElementById('email').value.trim();
+    var phone = document.getElementById('phone').value.trim();
+    var country = document.getElementById('country').value;
+    var region = document.getElementById('region').value;
+    var city = document.getElementById('city').value.trim();
+    var area = document.getElementById('area').value.trim();
+    var address = document.getElementById('address').value.trim();
+    var landmark = document.getElementById('landmark').value.trim();
+    var delivery = document.getElementById('delivery').value;
+    var deliveryText = document.getElementById('delivery').options[document.getElementById('delivery').selectedIndex].text;
+    var payment = document.getElementById('payment').value;
+    var paymentText = document.getElementById('payment').options[document.getElementById('payment').selectedIndex].text;
+    var grandTotal = document.getElementById('grandTotal').textContent;
+
+    var fullAddress = address + ', ' + area + ', ' + city + ', ' + region + ', ' + country;
+    if (landmark) fullAddress += '\nNear: ' + landmark;
+
+    var itemsList = cart.map(function(item) {
+      return '  • ' + item.name + ' × ' + item.qty + ' — KES ' + (item.price * item.qty).toLocaleString();
+    }).join('\n');
+
+    alert(
+      '✅ ORDER CONFIRMATION\n' +
+      '━━━━━━━━━━━━━━━━━━━━━━━\n\n' +
+      'CUSTOMER\n' +
+      'Name: ' + name + '\n' +
+      'Email: ' + email + '\n' +
+      'Phone: ' + phone + '\n\n' +
+      'DELIVERY ADDRESS\n' + fullAddress + '\n\n' +
+      'DELIVERY METHOD\n' + deliveryText + '\n\n' +
+      'ITEMS\n' + itemsList + '\n\n' +
+      'PAYMENT\n' + paymentText + '\n' +
+      'TOTAL: ' + grandTotal + '\n\n' +
+      '━━━━━━━━━━━━━━━━━━━━━━━\n' +
+      'Next: Connect this to Kora checkout API.'
+    );
+  });
+</script>
+
+</body>
+</html>
