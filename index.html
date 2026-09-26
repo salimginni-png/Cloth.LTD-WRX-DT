@@ -3,16 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Amos Clothing & Accessories | Quality Fashion for Kenya & Ghana</title>
+<title>Cloth.LTD-WRX-DT | Quality Fashion for Kenya & Ghana</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #333; background: #fff; }
   a { text-decoration: none; color: inherit; }
 
   /* HEADER */
   .topbar { background: #0f0f1a; color: #ddd; font-size: 13px; padding: 8px 20px; text-align: center; }
   .topbar span { margin: 0 10px; }
-  header { background: #1a1a2e; color: #fff; padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+  header { background: #1a1a2e; color: #fff; padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; position: sticky; top: 0; z-index: 100; }
   .logo { font-size: 24px; font-weight: bold; letter-spacing: 1px; }
   .logo span { color: #e94560; }
   nav ul { list-style: none; display: flex; gap: 22px; flex-wrap: wrap; }
@@ -23,8 +24,8 @@
   .hero { background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600') center/cover no-repeat; color: #fff; text-align: center; padding: 110px 20px; }
   .hero h1 { font-size: 44px; margin-bottom: 15px; letter-spacing: 1px; }
   .hero p { font-size: 18px; max-width: 650px; margin: 0 auto 25px; color: #eee; }
-  .btn { display: inline-block; background: #e94560; color: #fff; padding: 14px 34px; border-radius: 30px; font-weight: bold; font-size: 16px; transition: background 0.3s; }
-  .btn:hover { background: #c73650; }
+  .btn { display: inline-block; background: #e94560; color: #fff; padding: 14px 34px; border-radius: 30px; font-weight: bold; font-size: 16px; transition: background 0.3s, transform 0.2s; cursor: pointer; border: none; }
+  .btn:hover { background: #c73650; transform: translateY(-2px); }
 
   /* SECTION TITLES */
   .section-title { text-align: center; font-size: 30px; margin-bottom: 10px; color: #1a1a2e; }
@@ -33,7 +34,7 @@
   /* CATEGORIES */
   .categories { padding: 60px 20px; background: #f9f9f9; }
   .cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; max-width: 1100px; margin: 0 auto; }
-  .cat-card { background: #fff; border-radius: 10px; overflow: hidden; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.07); transition: transform 0.3s; }
+  .cat-card { background: #fff; border-radius: 10px; overflow: hidden; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.07); transition: transform 0.3s; cursor: pointer; }
   .cat-card:hover { transform: translateY(-5px); }
   .cat-card img { width: 100%; height: 160px; object-fit: cover; }
   .cat-card h3 { padding: 14px; font-size: 17px; color: #1a1a2e; }
@@ -48,8 +49,10 @@
   .card h3 { font-size: 17px; margin-bottom: 6px; color: #1a1a2e; }
   .card .price { color: #e94560; font-weight: bold; font-size: 16px; margin-bottom: 10px; }
   .card .tag { display: inline-block; background: #f0f0f0; color: #555; font-size: 12px; padding: 3px 10px; border-radius: 12px; margin-bottom: 8px; }
-  .card button { background: #1a1a2e; color: #fff; border: none; padding: 9px 20px; border-radius: 20px; cursor: pointer; font-size: 14px; transition: background 0.3s; }
+  .card button { background: #1a1a2e; color: #fff; border: none; padding: 9px 20px; border-radius: 20px; cursor: pointer; font-size: 14px; transition: background 0.3s, transform 0.2s; }
   .card button:hover { background: #e94560; }
+  .card button.added { background: #28a745; }
+  .card button.added:hover { background: #218838; }
 
   /* PROMO BANNER */
   .promo { background: #e94560; color: #fff; text-align: center; padding: 50px 20px; }
@@ -80,6 +83,15 @@
   .policies h3 { margin-top: 22px; font-size: 17px; color: #1a1a2e; }
   .policies p { color: #555; font-size: 15px; }
 
+  /* FLOATING CART */
+  .cart-float { position: fixed; bottom: 25px; right: 25px; background: #e94560; color: #fff; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; cursor: pointer; box-shadow: 0 5px 18px rgba(233,69,96,0.5); z-index: 200; transition: transform 0.2s; }
+  .cart-float:hover { transform: scale(1.1); }
+  .cart-count { position: absolute; top: -5px; right: -5px; background: #1a1a2e; color: #fff; font-size: 13px; font-weight: bold; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
+  /* TOAST NOTIFICATION */
+  .toast { position: fixed; bottom: 100px; right: 25px; background: #1a1a2e; color: #fff; padding: 14px 22px; border-radius: 8px; font-size: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.3); z-index: 300; opacity: 0; transform: translateY(20px); transition: opacity 0.3s, transform 0.3s; pointer-events: none; }
+  .toast.show { opacity: 1; transform: translateY(0); }
+
   /* FOOTER */
   footer { background: #1a1a2e; color: #ccc; padding: 40px 20px 20px; margin-top: 40px; }
   .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; max-width: 1100px; margin: 0 auto 25px; }
@@ -100,7 +112,7 @@
 
 <!-- HEADER -->
 <header>
-  <div class="logo">Amos<span>Clothing</span></div>
+  <div class="logo">Cloth<span>.LTD-WRX-DT</span></div>
   <nav>
     <ul>
       <li><a href="#home">Home</a></li>
@@ -163,7 +175,7 @@
         <span class="tag">Men</span>
         <h3>Classic Cotton T-Shirt</h3>
         <p class="price">KES 1,200</p>
-        <button>Add to Cart</button>
+        <button class="add-btn" data-name="Classic Cotton T-Shirt">Add to Cart</button>
       </div>
     </div>
 
@@ -173,7 +185,7 @@
         <span class="tag">Men</span>
         <h3>Slim Fit Denim Jeans</h3>
         <p class="price">KES 2,500</p>
-        <button>Add to Cart</button>
+        <button class="add-btn" data-name="Slim Fit Denim Jeans">Add to Cart</button>
       </div>
     </div>
 
@@ -183,7 +195,7 @@
         <span class="tag">Unisex</span>
         <h3>Casual Bomber Jacket</h3>
         <p class="price">KES 3,800</p>
-        <button>Add to Cart</button>
+        <button class="add-btn" data-name="Casual Bomber Jacket">Add to Cart</button>
       </div>
     </div>
 
@@ -193,7 +205,7 @@
         <span class="tag">Women</span>
         <h3>Elegant Summer Dress</h3>
         <p class="price">KES 2,900</p>
-        <button>Add to Cart</button>
+        <button class="add-btn" data-name="Elegant Summer Dress">Add to Cart</button>
       </div>
     </div>
 
@@ -203,7 +215,7 @@
         <span class="tag">Unisex</span>
         <h3>Warm Fleece Hoodie</h3>
         <p class="price">KES 2,200</p>
-        <button>Add to Cart</button>
+        <button class="add-btn" data-name="Warm Fleece Hoodie">Add to Cart</button>
       </div>
     </div>
 
@@ -213,7 +225,7 @@
         <span class="tag">Accessories</span>
         <h3>Classic Leather Watch</h3>
         <p class="price">KES 1,800</p>
-        <button>Add to Cart</button>
+        <button class="add-btn" data-name="Classic Leather Watch">Add to Cart</button>
       </div>
     </div>
 
@@ -223,7 +235,7 @@
         <span class="tag">Men</span>
         <h3>Casual Summer Shorts</h3>
         <p class="price">KES 1,500</p>
-        <button>Add to Cart</button>
+        <button class="add-btn" data-name="Casual Summer Shorts">Add to Cart</button>
       </div>
     </div>
 
@@ -233,7 +245,7 @@
         <span class="tag">Women</span>
         <h3>Knit Pullover Sweater</h3>
         <p class="price">KES 2,700</p>
-        <button>Add to Cart</button>
+        <button class="add-btn" data-name="Knit Pullover Sweater">Add to Cart</button>
       </div>
     </div>
 
@@ -243,7 +255,7 @@
         <span class="tag">Men</span>
         <h3>Formal Office Shirt</h3>
         <p class="price">KES 1,900</p>
-        <button>Add to Cart</button>
+        <button class="add-btn" data-name="Formal Office Shirt">Add to Cart</button>
       </div>
     </div>
 
@@ -253,7 +265,7 @@
         <span class="tag">Footwear</span>
         <h3>White Casual Sneakers</h3>
         <p class="price">KES 3,200</p>
-        <button>Add to Cart</button>
+        <button class="add-btn" data-name="White Casual Sneakers">Add to Cart</button>
       </div>
     </div>
 
@@ -263,7 +275,7 @@
         <span class="tag">Accessories</span>
         <h3>Leather Handbag</h3>
         <p class="price">KES 2,800</p>
-        <button>Add to Cart</button>
+        <button class="add-btn" data-name="Leather Handbag">Add to Cart</button>
       </div>
     </div>
 
@@ -273,7 +285,7 @@
         <span class="tag">Women</span>
         <h3>Floral Midi Skirt</h3>
         <p class="price">KES 2,100</p>
-        <button>Add to Cart</button>
+        <button class="add-btn" data-name="Floral Midi Skirt">Add to Cart</button>
       </div>
     </div>
 
@@ -290,7 +302,7 @@
 <!-- ABOUT -->
 <section class="about" id="about">
   <h2 class="section-title">About Us</h2>
-  <p>Amos Clothing & Accessories is an online fashion store based in Bomet, Kenya. We sell quality clothing and accessories to customers in Kenya and Ghana. Our goal is to make stylish, affordable fashion accessible across Africa with fast delivery and secure Mobile Money payments.</p>
+  <p>Cloth.LTD-WRX-DT is an online fashion store based in Bomet, Kenya. We sell quality clothing and accessories to customers in Kenya and Ghana. Our goal is to make stylish, affordable fashion accessible across Africa with fast delivery and secure Mobile Money payments.</p>
 </section>
 
 <!-- TESTIMONIALS -->
@@ -340,7 +352,7 @@
 <footer>
   <div class="footer-grid">
     <div>
-      <h3>Amos Clothing</h3>
+      <h3>Cloth.LTD-WRX-DT</h3>
       <p>Quality fashion delivered across Kenya and Ghana.</p>
     </div>
     <div>
@@ -365,9 +377,60 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <p>&copy; 2026 Amos Clothing & Accessories. All rights reserved.</p>
+    <p>&copy; 2026 Cloth.LTD-WRX-DT. All rights reserved.</p>
   </div>
 </footer>
+
+<!-- FLOATING CART -->
+<div class="cart-float" onclick="showToast('You have ' + cartCount + ' item(s) in your cart.')">
+  🛒
+  <span class="cart-count" id="cartCount">0</span>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">Item added to cart!</div>
+
+<script>
+  var cartCount = 0;
+  var toastTimer;
+
+  // ADD TO CART
+  document.querySelectorAll('.add-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      cartCount++;
+      document.getElementById('cartCount').textContent = cartCount;
+      btn.textContent = '✓ Added';
+      btn.classList.add('added');
+      showToast('✓ ' + btn.getAttribute('data-name') + ' added to cart!');
+      setTimeout(function() {
+        btn.textContent = 'Add to Cart';
+        btn.classList.remove('added');
+      }, 1800);
+    });
+  });
+
+  // TOAST
+  function showToast(msg) {
+    var toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function() {
+      toast.classList.remove('show');
+    }, 2500);
+  }
+
+  // SMOOTH SCROLL FOR NAV LINKS
+  document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      var target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+</script>
 
 </body>
 </html>
